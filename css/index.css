@@ -1,0 +1,63 @@
+body, *{
+	margin: 0px;
+	padding: 0px;
+}
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+.slide{
+	margin-bottom: 10px;
+}
+.frm .btn-search{
+	border-radius: 15px 15px;
+}
+.apple{
+	height: 50px;
+	/*background: linear-gradient(#ee9ca7, #ffdde1);*/
+	background: linear-gradient(#42418b, #3827fb);
+}
+.apple h3{
+	color: white;
+}
+.con-row{
+	/*border: 1px solid black;*/
+	margin-bottom: 5px;
+	}
+
+.row-inside{
+	/*height: 255px;*/
+	/*background: blue;*/
+	overflow: hidden;
+}
+/*pagination*/
+.con{
+	position: relative;
+	margin: 
+	}
+.pagination {
+	margin: auto;
+    display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+.pagination a:hover{
+	background: gray;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+img:hover{
+	transition: 2s;
+	transform: scale(1.5);
+	-ms-transform: scale(1.5);
+}

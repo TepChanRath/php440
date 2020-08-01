@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">computesystem</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="brand" view="colnames">
+<left>23</left>
+<top>122</top>
+<width>111</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `brand` (
+  `brandid` int(11) NOT NULL AUTO_INCREMENT,
+  `brandname` varchar(50) DEFAULT NULL,
+  `brandlogo` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`brandid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="color" view="colnames">
+<left>655</left>
+<top>9</top>
+<width>111</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `color` (
+  `colid` int(11) NOT NULL AUTO_INCREMENT,
+  `brandname` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`colid`),
+  KEY `fk` (`brandname`),
+  CONSTRAINT `FK_color` FOREIGN KEY (`colid`) REFERENCES `productcolor` (`pcid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="inventory" view="colnames">
+<left>362</left>
+<top>455</top>
+<width>108</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `inventory` (
+  `stockid` int(11) NOT NULL AUTO_INCREMENT,
+  `stockname` varchar(50) DEFAULT NULL,
+  `proid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`stockid`),
+  KEY `FK` (`stockid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="productcolor" view="colnames">
+<left>429</left>
+<top>-6</top>
+<width>131</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `productcolor` (
+  `pcid` int(11) NOT NULL AUTO_INCREMENT,
+  `proid` int(11) DEFAULT NULL,
+  `colid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pcid`),
+  KEY `Forenkey` (`proid`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="staff" view="colnames">
+<left>492</left>
+<top>226</top>
+<width>116</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `staff` (
+  `stffid` int(11) NOT NULL AUTO_INCREMENT,
+  `staffname` varchar(50) DEFAULT NULL,
+  `staffgender` varchar(5) DEFAULT NULL,
+  `staffdob` datetime DEFAULT NULL,
+  `staffaddress` varchar(100) DEFAULT NULL,
+  `staffphone` varchar(100) DEFAULT NULL,
+  `stockid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`stffid`),
+  KEY `fk` (`stockid`),
+  CONSTRAINT `FK_staff` FOREIGN KEY (`stffid`) REFERENCES `tblproduct` (`Staffid`),
+  CONSTRAINT `FK_staff_inventory` FOREIGN KEY (`stockid`) REFERENCES `inventory` (`stockid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="tblproduct" view="colnames">
+<left>224</left>
+<top>24</top>
+<width>114</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `tblproduct` (
+  `proid` int(11) NOT NULL AUTO_INCREMENT,
+  `proname` varchar(100) DEFAULT NULL,
+  `procpu` varchar(100) DEFAULT NULL,
+  `proram` varchar(100) DEFAULT NULL,
+  `proharddisk` varchar(100) DEFAULT NULL,
+  `prosize` varchar(100) DEFAULT NULL,
+  `proprice` varchar(100) DEFAULT NULL,
+  `brandid` int(11) DEFAULT NULL,
+  `Staffid` int(11) DEFAULT NULL,
+  `stockid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`proid`),
+  KEY `NewIndex1` (`Staffid`),
+  KEY `fk1` (`brandid`),
+  KEY `FK_tblproduct_inventory` (`stockid`),
+  CONSTRAINT `FK_tblproduct` FOREIGN KEY (`proid`) REFERENCES `productcolor` (`proid`),
+  CONSTRAINT `FK_tblproduct_brand` FOREIGN KEY (`brandid`) REFERENCES `brand` (`brandid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tblproduct_inventory` FOREIGN KEY (`stockid`) REFERENCES `inventory` (`stockid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
